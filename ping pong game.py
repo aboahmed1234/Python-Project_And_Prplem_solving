@@ -30,7 +30,7 @@ madrab2.shapesize(stretch_wid=6 , stretch_len=1)
 #  making the default shabe multibletion 6 * 20 default
 madrab2.penup()
 # prevent the shape from kaing shadow
-madrab2.goto(350 , 0)   # The Olace of the shabe
+madrab2.goto(350 , 0)   # The place of the shabe
 
 
 #  The ball
@@ -41,8 +41,8 @@ ball.shape("circle")
 ball.color("white")
 ball.penup()
 ball.goto(0  , 0 )
-ball.dx =2.5
-ball.dy =2.5
+ball.dx =0.1  # fast of the shape when game start
+ball.dy =0.1 #--------------------------------
 
 
 
@@ -115,8 +115,41 @@ wind.onkeypress(madrab2_down, "Down")
 
 while True:
     wind.update() # again update window every open
-    ball.setx(ball.xcor() + ball.dx)
-    ball.sety(ball.ycor() + ball.dy)
+    ball.setx(ball.xcor() + ball.dx)  # calc the location of ball and get change every start the game lopp
+    ball.sety(ball.ycor() + ball.dy)  #calc the location of ball and get change every start the game lopp
+
+    # check the ball go to broders of x , y any test value clalced by widthe and height
+    if ball.ycor() > 290:
+        ball.sety(290) # get the new cordinests when ball move
+        ball.dy *=-1 # change the new speed of ball
+    if ball.ycor() < -290: # same thing but when in negitive codients of y
+        ball.sety(-290)
+        ball.dy *=-1
+    # ==================================================
+    if ball.xcor() > 400: # check in x codinets
+        ball.goto(0 ,0 ) # when go to x axcies retun to defalt location
+        ball.dx *=-1
+
+    if ball.xcor() < -400: # same but in negitave
+        ball.goto(0 ,0) # retun to 0  ,  9
+        ball.dx *=-1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
