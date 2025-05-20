@@ -45,6 +45,17 @@ ball.dx =0.1  # fast of the shape when game start
 ball.dy =0.1 #--------------------------------
 
 
+# crete Score
+
+score1 =0
+score2 =0
+score = turtle.Turtle()
+score.speed(0)
+score.color("white")
+score.penup()
+score.hideturtle()
+score.goto(0 , 250)
+score.write("Player 1 :0 Player 2 :0" , align="center", font=("Courier", 24, "normal"))
 
 def madrab1_up():  # making the basic funcation for move the nadrib
     y = madrab1.ycor() # get the location of y cordent in thes moment
@@ -74,41 +85,8 @@ wind.onkeypress(madrab2_up, "Up")
 wind.onkeypress(madrab2_down, "Down")
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 # continue--------------------------------
 # ---------------------Moving The objects-------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # makeing The Game loop and update The Game every open
 
@@ -128,11 +106,28 @@ while True:
     # ==================================================
     if ball.xcor() > 400: # check in x codinets
         ball.goto(0 ,0 ) # when go to x axcies retun to defalt location
+        score1 +=1
+        score.clear()
+        score.write(f"Player 1 :{score1} Player 2 :{score2}", align="center", font=("Courier", 24, "normal"))
         ball.dx *=-1
 
     if ball.xcor() < -400: # same but in negitave
         ball.goto(0 ,0) # retun to 0  ,  9
+        score2 +=1
+        score.clear()
+        score.write(f"Player 1 :{score1} Player 2 :{score2}", align="center", font=("Courier", 24, "normal"))
         ball.dx *=-1
+      # making the balla moving when hit mdrabs
+
+    # make the mdribe 2 postive value
+    if ball.xcor() > 340 and ball.xcor() < 350 and ball.ycor() < madrab2.ycor()+40 and ball.ycor() > madrab2.ycor():
+        ball.setx(340)
+        ball.dx *= -1
+    # ======================================================
+    # make the mdrib 1 negitave value......
+    if ball.xcor() < -340 and ball.xcor() > -350 and ball.ycor() < madrab1.ycor()+40 and ball.ycor() > madrab1.ycor():
+        ball.setx(-340)
+        ball.dx *= -1
 
 
 
